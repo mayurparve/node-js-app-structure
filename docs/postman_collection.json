@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "4e4d5f50-0187-4337-97cb-8570f0b0af6f",
+		"name": "NODE JS",
+		"description": "Backend API to manage Tasks and Authentication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Get all Tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/tasks",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks"
+							]
+						},
+						"description": "get all tasks"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Task with given Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/tasks/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks",
+								"1"
+							]
+						},
+						"description": "Get task with specified id"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task with given Id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"task_name\": \"My updated first Task\",\n\t\"task_description\": \"This will create our first ever Task in database\",\n\t\"task_priority\": \"Low\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/tasks/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks",
+								"1"
+							]
+						},
+						"description": "Update task with new details"
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"task_name\": \"My first Task\",\n\t\"task_description\": \"This will create our first ever Task in database\",\n\t\"task_priority\": \"Medium\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/tasks",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks"
+							]
+						},
+						"description": "Create new task"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task with given Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/tasks/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks",
+								"1"
+							]
+						},
+						"description": "Delete task with specified id"
+					},
+					"response": []
+				}
+			],
+			"description": "Backend API to manage Tasks",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b075bf3d-a15b-4c47-887a-a47a24191239",
+								"exec": [
+									"pm.environment.set('TOKEN', pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Mayur Parve\",\n\t\"email\": \"mayur.parve@autoflowtech.com\",\n\t\"password\": \"123456\",\n\t\"role\": \"Admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "Register new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04512f49-b1c8-4d30-84db-0359f1ab990f",
+								"exec": [
+									"pm.environment.set('TOKEN', pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"mayur.parve@autoflowtech.com\",\n\t\"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Login user"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e91dde9b-d27c-4ed3-b0dd-52e5f434882f",
+								"exec": [
+									"pm.environment.set('TOKEN', pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/auth/logout",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						},
+						"description": "Logout User"
+					},
+					"response": []
+				}
+			],
+			"description": "Backend API to manage Authentication usong JWT and Cookie",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1ee1c382-addb-4d5d-8eef-0d7632a93f63",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "28028a88-012e-486d-a995-f3284f572c22",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
